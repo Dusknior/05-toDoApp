@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button color="tertiary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{lista.nombre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-list color="light">
+    <ion-item color="light">
+      <ion-label position="floating">Nuevo Item</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="nombreItem"
+        (keyup.enter)="agregarItem()"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list color="light">
+    <ion-list-header color="light" *ngIf="lista.items.length > 0">
+      <ion-label>Tareas por hacer</ion-label>
+    </ion-list-header>
+
+    <ion-item-sliding
+      *ngFor="let item of lista.items; index as i "
+      class="animated fadeInDown"
+    >
+      <ion-item-options side="start">
+        <ion-item-option (click)="editarItem(item)" color="tertiary">
+          <ion-icon name="create"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item color="light">
+        <ion-checkbox
+          slot="start"
+          color="tertiary"
+          [(ngModel)]="item.completado"
+          (ionChange)="cambioCheck()"
+        >
+        </ion-checkbox>
+        <ion-label> {{item.desc}} </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="borrarItem(i)" color="danger">
+          <ion-icon name="close"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

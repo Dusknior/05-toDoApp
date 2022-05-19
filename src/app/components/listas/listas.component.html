@@ -1,0 +1,22 @@
+<ion-list color="light">
+  <ion-item-sliding *ngFor="let lista of deseos.listas">
+    <ion-item-options side="start">
+      <ion-item-option (click)="editarLista(lista)" color="tertiary">
+        <ion-icon name="create"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
+    <ion-item color="light" (click)="listaSeleccionada(lista)">
+      <ion-label>{{ lista.nombre }}</ion-label>
+      <ion-badge slot="end" color="tertiary">{{
+        lista.items.length
+      }}</ion-badge>
+    </ion-item>
+
+    <ion-item-options side="end">
+      <ion-item-option (click)="borrarLista(lista)" color="danger">
+        <ion-icon name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
